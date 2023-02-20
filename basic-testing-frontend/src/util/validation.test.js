@@ -28,6 +28,14 @@ describe('validateNumber', () => {
     expect(validateFn).toThrow(/invalid number input/i);
   });
 
+  it('should throw an error if the provided number is not of the number type', () => {
+    const input = '1';
+
+    const validateFn = () => validateNumber(input);
+
+    expect(validateFn).toThrow(/invalid number input/i);
+  });
+
   it('should not throw an error if a valid number is provided', () => {
     const input = 1;
 
