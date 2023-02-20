@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { validateNumber, validateStringNotEmpty } from './validation';
 
-describe('validateStringNotEmpty', () => {
+describe('validateStringNotEmpty()', () => {
   it('should throw an error if string is empty', () => {
     const input = '';
 
@@ -19,7 +19,7 @@ describe('validateStringNotEmpty', () => {
   });
 });
 
-describe('validateNumber', () => {
+describe('validateNumber()', () => {
   it('should throw an error if number is not valid', () => {
     const input = 'invalid';
 
