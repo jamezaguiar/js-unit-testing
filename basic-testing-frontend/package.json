@@ -5,7 +5,7 @@
   "main": "app.js",
   "scripts": {
     "test": "vitest --run --reporter verbose",
-    "test:watch": "vitest",
+    "test:watch": "vitest --reporter verbose",
     "start": "http-server -c-1"
   },
   "keywords": [],
