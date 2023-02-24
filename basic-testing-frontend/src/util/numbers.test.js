@@ -1,22 +1,43 @@
-import { expect, it } from 'vitest';
-import { transformToNumber } from './numbers';
+import { describe, expect, it } from 'vitest';
+import { cleanNumbers, transformToNumber } from './numbers';
 
-it('should transform a string number to a number of type number', () => {
-  const input = '1';
+describe('transformToNumber()', () => {
+  it('should transform a string number to a number of type number', () => {
+    const input = '1';
 
-  const result = transformToNumber(input);
+    const result = transformToNumber(input);
 
-  expect(result).toBe(1);
-  expect(result).toBeTypeOf('number');
+    expect(result).toBe(1);
+    expect(result).toBeTypeOf('number');
+  });
+
+  it('should yield NaN if the argument is not a numeric string', () => {
+    const input = 'invalid';
+    const input2 = {};
+
+    const result = transformToNumber(input);
+    const result2 = transformToNumber(input2);
+
+    expect(result).toBeNaN();
+    expect(result2).toBeNaN();
+  });
 });
 
-it('should yield NaN if the argument is not a numeric string', () => {
-  const input = 'invalid';
-  const input2 = {};
+describe('cleanNumbers()', () => {
+  it('should return an array of number values if an array of string number values is provided', () => {
+    const numberValues = ['1', '2', '3'];
+    const expectedValue = numberValues.map(Number);
 
-  const result = transformToNumber(input);
-  const result2 = transformToNumber(input2);
+    const result = cleanNumbers(numberValues);
 
-  expect(result).toBeNaN();
-  expect(result2).toBeNaN();
+    expect(result).toStrictEqual(expectedValue);
+  });
+
+  it('should throw an error if an array with at least one empty string is provided', () => {
+    const numberValues = ['', 1];
+
+    const resultFn = () => cleanNumbers(numberValues);
+
+    expect(resultFn).toThrow();
+  });
 });
